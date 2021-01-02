@@ -1,0 +1,6 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Sebastian Rollen
+	email = rollenseb@gmail.com
+[credential]
+	helper = store
