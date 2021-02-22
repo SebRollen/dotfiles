@@ -9,10 +9,11 @@ set shiftwidth=4
 
 set number
 set relativenumber
-set cursorline
 set wildmenu
 set lazyredraw
 set showmatch
+set cursorline
+set hidden
 
 set hlsearch
 set ignorecase
@@ -34,15 +35,16 @@ set undofile
 set undodir=~/.vim/undodir
 set undolevels=1000
 
-if exists('$TMUX')
-	let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-	let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+ if exists('$TMUX')
+    let &t_SI.="\<Esc>Ptmux;\<Esc>\e[5 q\<Esc>\\" "SI = INSERT mode
+    let &t_SR.="\<Esc>Ptmux;\<Esc>\e[4 q\<Esc>\\" "SR = REPLACE mode
+    let &t_EI.="\<Esc>Ptmux;\<Esc>\e[1 q\<Esc>\\" "EI = NORMAL mode (ELSE)
 else
-	let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-	let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+    let &t_SI.="\e[5 q" "SI = INSERT mode
+    let &t_SR.="\e[4 q" "SR = REPLACE mode
+    let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
+
 endif
-:autocmd InsertEnter * set cul
-:autocmd InsertLeave * set nocul
 
 call plug#begin()
 Plug 'JuliaEditorSupport/julia-vim'
