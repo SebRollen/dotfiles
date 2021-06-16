@@ -13,7 +13,7 @@ set wildmenu
 set lazyredraw
 set showmatch
 set cursorline
-set hidden
+set hidden " Hide buffers rather than delete them
 
 set hlsearch
 set ignorecase
@@ -24,7 +24,6 @@ nnoremap j gj
 nnoremap k gk
 
 let mapleader=","
-inoremap jk <esc>
 
 set noerrorbells
 set title
@@ -48,10 +47,11 @@ endif
 
 call plug#begin()
 Plug 'JuliaEditorSupport/julia-vim'
-Plug 'mcchrish/nnn.vim'
+Plug 'mcchrish/nnn.vim' " File navigator
 Plug 'aserebryakov/vim-todo-lists'
-Plug 'dense-analysis/ale'
+Plug 'dense-analysis/ale' " Linting
 Plug 'rust-lang/rust.vim'
+Plug 'pangloss/vim-javascript'
 call plug#end()
 
 let g:VimTodoListsMoveItems=0
@@ -65,8 +65,15 @@ let g:rustfmt_autosave=1
 let g:ale_linters = {'rust': ['analyzer']}
 let g:ale_completion_enabled = 1
 let g:ale_sign_column_always = 1
-let g:ale_set_highlights = 0
-highlight ALEError ctermbg=none cterm=underline
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
+let g:ale_set_highlights = 1
+highlight ALEError ctermbg=none ctermfg=red cterm=underline
+highlight ALEWarning ctermbg=none ctermfg=yellow cterm=underline
 highlight ALEErrorSign ctermfg=red
 highlight ALEWarningSign ctermfg=yellow
-highlight SignColumn ctermbg=black
+highlight clear SignColumn
+
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"

@@ -4,3 +4,5 @@
 	email = seb@overmu.se
 [credential]
 	helper = osxkeychain
+[pager]
+	branch = false
