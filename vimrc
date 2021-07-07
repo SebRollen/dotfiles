@@ -32,6 +32,7 @@ set history=1000
 set backspace=indent,eol,start
 set undofile
 set undodir=~/.vim/undodir
+set directory=~/.vim/swapfiles
 set undolevels=1000
 
  if exists('$TMUX')
