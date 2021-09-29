@@ -6,3 +6,5 @@
 	helper = osxkeychain
 [pager]
 	branch = false
+[pull]
+	rebase = true

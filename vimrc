@@ -51,8 +51,12 @@ Plug 'JuliaEditorSupport/julia-vim'
 Plug 'mcchrish/nnn.vim' " File navigator
 Plug 'aserebryakov/vim-todo-lists'
 Plug 'dense-analysis/ale' " Linting
+Plug 'airblade/vim-gitgutter'
 Plug 'rust-lang/rust.vim'
 Plug 'pangloss/vim-javascript'
+Plug 'ziglang/zig.vim'
+Plug 'vimwiki/vimwiki'
+Plug 'junegunn/fzf'
 call plug#end()
 
 let g:VimTodoListsMoveItems=0
@@ -63,7 +67,7 @@ nnoremap <leader>n :NnnPicker %:p:h<CR>
 
 let g:rustfmt_autosave=1
 
-let g:ale_linters = {'rust': ['analyzer']}
+let g:ale_linters = {'rust': ['analyzer'], 'zig': ['zls']}
 let g:ale_completion_enabled = 1
 let g:ale_sign_column_always = 1
 let g:ale_lint_on_text_changed = 'normal'
@@ -78,3 +82,6 @@ highlight clear SignColumn
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+nnoremap <leader>f :FZF<CR>
+nnoremap <leader>p :set paste!<CR>
