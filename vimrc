@@ -57,6 +57,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'ziglang/zig.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'junegunn/fzf'
+Plug 'SirVer/ultisnips'
 call plug#end()
 
 let g:VimTodoListsMoveItems=0
@@ -78,6 +79,9 @@ highlight ALEWarning ctermbg=none ctermfg=yellow cterm=underline
 highlight ALEErrorSign ctermfg=red
 highlight ALEWarningSign ctermfg=yellow
 highlight clear SignColumn
+
+" Put diary files in same folder as rest of wiki for easier linking
+let g:vimwiki_list = [{'path': '~/vimwiki/', 'path_html': '~/vimwiki_html/', 'diary_rel_path' : ''}]
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
