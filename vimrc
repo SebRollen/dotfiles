@@ -49,7 +49,6 @@ endif
 call plug#begin()
 Plug 'JuliaEditorSupport/julia-vim'
 Plug 'mcchrish/nnn.vim' " File navigator
-Plug 'aserebryakov/vim-todo-lists'
 Plug 'dense-analysis/ale' " Linting
 Plug 'airblade/vim-gitgutter'
 Plug 'rust-lang/rust.vim'
@@ -58,9 +57,13 @@ Plug 'ziglang/zig.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'junegunn/fzf'
 Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 call plug#end()
 
-let g:VimTodoListsMoveItems=0
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:snips_author="Sebastian Rollen"
 
 let g:nnn#set_default_mappings=0
 let g:nnn#layout={'window': {'width': 0.9, 'height': 0.6, 'highlight': 'Debug'}}
@@ -80,12 +83,12 @@ highlight ALEErrorSign ctermfg=red
 highlight ALEWarningSign ctermfg=yellow
 highlight clear SignColumn
 
-" Put diary files in same folder as rest of wiki for easier linking
-let g:vimwiki_list = [{'path': '~/vimwiki/', 'path_html': '~/vimwiki_html/', 'diary_rel_path' : ''}]
+let g:vimwiki_global_ext = 0
 
-" Use <Tab> and <S-Tab> to navigate through popup menu
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" Put diary files in same folder as rest of wiki for easier linking
+let g:vimwiki_list = [{'path': '~/vimwiki/', 'path_html': '~/vimwiki_html/', 'diary_rel_path' : '', 'ext': '.md', 'syntax': 'markdown','auto_tags':1}]
+" Disable <tab> in insert mode for vimwiki to allow for snip expansion
+let g:vimwiki_key_mappings = { 'table_mappings': 0, }
 
 nnoremap <leader>f :FZF<CR>
 nnoremap <leader>p :set paste!<CR>
