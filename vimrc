@@ -35,6 +35,7 @@ set undodir=~/.vim/undodir
 set directory=~/.vim/swapfiles
 set undolevels=1000
 
+" Make cursor into vertical bar in INSERT mode
  if exists('$TMUX')
     let &t_SI.="\<Esc>Ptmux;\<Esc>\e[5 q\<Esc>\\" "SI = INSERT mode
     let &t_SR.="\<Esc>Ptmux;\<Esc>\e[4 q\<Esc>\\" "SR = REPLACE mode
@@ -58,6 +59,9 @@ Plug 'vimwiki/vimwiki'
 Plug 'junegunn/fzf'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'tpope/vim-surround'
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-rails'
 call plug#end()
 
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -71,7 +75,10 @@ nnoremap <leader>n :NnnPicker %:p:h<CR>
 
 let g:rustfmt_autosave=1
 
-let g:ale_linters = {'rust': ['analyzer'], 'zig': ['zls']}
+let g:ale_linters = {'rust': ['analyzer'], 'zig': ['zls'], 'ruby': ['rubocop']}
+let g:ale_linters_explicit = 1
+let g:ale_fixers = {'ruby': ['standardrb', 'rubocop']}
+let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 1
 let g:ale_sign_column_always = 1
 let g:ale_lint_on_text_changed = 'normal'
@@ -92,3 +99,26 @@ let g:vimwiki_key_mappings = { 'table_mappings': 0, }
 
 nnoremap <leader>f :FZF<CR>
 nnoremap <leader>p :set paste!<CR>
+" <leader><leader> toggles between buffers
+nnoremap <leader><leader> <c-^>
+
+" Centered search results
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
+nnoremap <silent> * *zz
+nnoremap <silent> # #zz
+nnoremap <silent> g* g*zz
+
+" Disable arrow keys
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+" TODO: Fix the language client below
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
