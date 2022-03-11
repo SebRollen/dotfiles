@@ -2,6 +2,7 @@
 [user]
 	name = Sebastian Rollen
 	email = seb@overmu.se
+	signingkey = DEC794A15A026532A63025CCC53AECBBEFB9B462
 [credential]
 	helper = osxkeychain
 [pager]

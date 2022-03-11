@@ -62,6 +62,7 @@ Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround'
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
+Plug 'strboul/urlview.vim'
 call plug#end()
 
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -99,6 +100,7 @@ let g:vimwiki_key_mappings = { 'table_mappings': 0, }
 
 nnoremap <leader>f :FZF<CR>
 nnoremap <leader>p :set paste!<CR>
+nnoremap <leader>u :Urlview<CR>
 " <leader><leader> toggles between buffers
 nnoremap <leader><leader> <c-^>
 

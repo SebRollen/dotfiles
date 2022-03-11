@@ -1,0 +1,57 @@
+# Load configurations
+source ~/.mutt/gpg.rc
+
+# Load gpg encrypted IMAP and SMTP app passwords
+source "gpg --decrypt ~/.mutt/app-password.gpg |"
+source ~/.mutt/colors
+
+# Display the fields in this order
+hdr_order date subject from to cc
+
+set editor=vim
+set header_cache="~/.mutt/cache/headers"
+set date_format="!%b %d, %Y at %I:%M%p %Z"
+set timeout=5 # Update folder status often (every 5 seconds) when inactive
+set realname = "Sebastian Rollén"
+set from = rollenseb@gmail.com
+# Other email addresses that should be marked as "me"
+alternates seb@overmu.se sebrollen@hotmail.com seb@rollen.io sebastian.rollen@betterment.com
+
+set folder = "imaps://rollenseb@imap.gmail.com:993"
+set smtp_url = "smtps://rollenseb@smtp.gmail.com:465/"
+set smtp_authenticators = 'gssapi:login'
+
+# Setup folders
+set spoolfile = "+INBOX"
+set record = "+Sent"
+set trash = "+Trash"
+set postponed = "+Drafts"
+
+# Sorting and threading
+set sort = "threads"
+set strict_threads="yes" # Don't automatically group messages with the same subject
+set collapse_unread="no" # Don't collapse a thread if there's an unread message in it
+set sort_browser="reverse-date"
+set sort_aux="reverse-last-date-received" # Bring threads with recent messages to top
+
+# SSL hardening
+set ssl_force_tls = yes
+set ssl_starttls = yes
+set ssl_use_sslv2 = no
+set ssl_use_sslv3 = no
+set ssl_use_tlsv1 = no
+set ssl_use_tlsv1_1 = no
+set ssl_use_tlsv1_2 = yes
+set ssl_use_tlsv1_3 = yes
+set ssl_verify_dates = yes
+set ssl_verify_host = yes
+set ssl_usesystemcerts = yes
+
+# html email
+set mailcap_path = ~/.mutt/mailcap
+auto_view text/html  # view html automatically
+alternative_order text/plain text/enriched text/html # save html for last
+
+# G to get mail
+bind index G imap-fetch-mail
+set charset = "utf-8"
