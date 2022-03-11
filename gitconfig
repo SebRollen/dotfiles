@@ -1,7 +1,7 @@
 # This is Git's per-user configuration file.
 [user]
 	name = Sebastian Rollen
-	email = seb@overmu.se
+	email = rollenseb@gmail.com
 	signingkey = DEC794A15A026532A63025CCC53AECBBEFB9B462
 [credential]
 	helper = osxkeychain
