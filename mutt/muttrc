@@ -7,25 +7,32 @@ source ~/.mutt/colors
 
 # Display the fields in this order
 hdr_order date subject from to cc
+# Allow sending emails with no subject
+set abort_nosubject=no
 
 set editor=vim
 set header_cache="~/.mutt/cache/headers"
 set date_format="!%b %d, %Y at %I:%M%p %Z"
+set mail_check=60 # If we are actively using mutt, only search for mail every minute
 set timeout=5 # Update folder status often (every 5 seconds) when inactive
-set realname = "Sebastian Rollén"
-set from = rollenseb@gmail.com
+set nobeep
+set beep_new
+set realname="Sebastian Rollén"
+set from=rollenseb@gmail.com
 # Other email addresses that should be marked as "me"
-alternates seb@overmu.se sebrollen@hotmail.com seb@rollen.io sebastian.rollen@betterment.com
+alternates -group me sebrollen@hotmail.com seb@rollen.io
+alternates -group me -group work sebastian.rollen@betterment.com seb@overmu.se
+set charset = "utf-8"
 
 set folder = "imaps://rollenseb@imap.gmail.com:993"
 set smtp_url = "smtps://rollenseb@smtp.gmail.com:465/"
 set smtp_authenticators = 'gssapi:login'
 
-# Setup folders
+# Setup folders (specifically, use gmails format)
 set spoolfile = "+INBOX"
-set record = "+Sent"
-set trash = "+Trash"
-set postponed = "+Drafts"
+set record = "+[Gmail]/Sent Mail"
+set trash = "+[Gmail]/Trash"
+set postponed = "+[Gmail]/Drafts"
 
 # Sorting and threading
 set sort = "threads"
@@ -47,11 +54,15 @@ set ssl_verify_dates = yes
 set ssl_verify_host = yes
 set ssl_usesystemcerts = yes
 
-# html email
 set mailcap_path = ~/.mutt/mailcap
-auto_view text/html  # view html automatically
+# html email
+auto_view text/enriched text/html  # view html automatically
 alternative_order text/plain text/enriched text/html # save html for last
 
+# -- bindings -- 
 # G to get mail
 bind index G imap-fetch-mail
-set charset = "utf-8"
+macro index gd "<change-folder>$postponed<enter>" "go to drafts"
+macro index gs "<change-folder>$record<enter>" "go to sent"
+macro index gi "<change-folder>$spoolfile<Enter>" "go to inbox"
+macro index gt "<change-folder>$trash<enter>" "go to trash""
