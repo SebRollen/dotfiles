@@ -2,7 +2,7 @@
 [user]
 	name = Sebastian Rollen
 	email = rollenseb@gmail.com
-	signingkey = 1253838BFCEEEB888142C32D4D0C9FD443F76951
+	signingkey = 26FCF00D879D9AA0E20B39A7ED49A5F124D1D673
 [credential]
 	helper = osxkeychain
 [pager]
