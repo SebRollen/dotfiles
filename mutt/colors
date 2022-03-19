@@ -7,7 +7,7 @@ color index brightyellow default "(~N|~O|~U)!~p"
 color index brightwhite default "(~N|~O|~U)~p"
 # Next, mark other messages
 color index magenta default ~Q # replied
-color index brightgreen default ~P # from me
+color index brightgreen default ~F # flagged
 color index brightblue default ~T # selected
 color index red default ~D # deleted
 mono index bold ~N
